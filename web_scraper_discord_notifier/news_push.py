@@ -102,10 +102,6 @@ if entry_element:
 
         # If this date is new
         if data is None:
-            # Add to database
-            cursor.execute('INSERT INTO Dates (date) VALUES (?)', (current_date,))
-            conn.commit()
-
             # Find text within the entry
             text_element = entry_element.find(class_="text")
             if text_element:
@@ -122,6 +118,10 @@ if entry_element:
                 for message in messages:
                     requests.post(webhook_url, json={"content": message})
                     time.sleep(1) # Delay for 1 second between messages. To avoid rate limiting.
+
+            # Add to database
+            cursor.execute('INSERT INTO Dates (date) VALUES (?)', (current_date,))
+            conn.commit()
 
 # Close DB connection
 conn.close()
