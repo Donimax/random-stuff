@@ -62,7 +62,7 @@ for card in post_cards:
             read_more_link = read_more_element.find('a')['href']
 
             # Create message content
-            content = f"[{title}](<{read_more_link}>)\n{excerpt}\n"
+            content = f"[{title}](<{read_more_link}>)\n{excerpt}\n[Weiterlesen](<{read_more_link}>)"
 
             # Split content into chunks of 2000 characters
             messages = [content[i:i+2000] for i in range(0, len(content), 2000)]
